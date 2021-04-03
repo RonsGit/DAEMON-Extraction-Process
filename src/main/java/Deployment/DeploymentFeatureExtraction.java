@@ -20,7 +20,7 @@ import static Data.FileActions.getSampleName;
 import static FeaturesExtractors.ByteFrequenciesFeatures.isInteger;
 import static FeaturesExtractors.DividingStringsFeatures.getSortedKeys;
 
-public class DepolymentFeatureExtraction extends FeaturesCollection {
+public class DeploymentFeatureExtraction extends FeaturesCollection {
 
     private final ConcurrentMap<CharSequence, String> testSet;
     private static final Logger log = Logger.getLogger(ClassName.class.getName());
@@ -30,8 +30,8 @@ public class DepolymentFeatureExtraction extends FeaturesCollection {
     private String finalTestFeaturesPath;
     private String[] allNGrams;
 
-    DepolymentFeatureExtraction(String featureCollectionPath, Dataset toExtractFrom,
-                                String finalTestFeaturesPath) {
+    public DeploymentFeatureExtraction(String featureCollectionPath, Dataset toExtractFrom,
+                                       String finalTestFeaturesPath) {
         super(featureCollectionPath, toExtractFrom);
         this.testFrequencyMap = new ConcurrentHashMap<>();
         this.testNGramsMap = new ConcurrentHashMap<>();

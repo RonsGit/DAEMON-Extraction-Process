@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ce609382-07dc-42e9-8808-4223f37e1a50" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/Deployment/DepolymentFeatureExtraction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Deployment/DepolymentFeatureExtraction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Deployment/DepolymentFeatureExtraction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MainController.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,22 +24,22 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="28" />
+          <entry key="java" value="29" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="28" />
+          <entry key="JAVA" value="29" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="4915" />
+          <entry key="java" value="5025" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="4915" />
+          <entry key="JAVA" value="5025" />
         </counts>
       </usages-collector>
     </session>
@@ -53,11 +55,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Deployment/DepolymentFeatureExtraction.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Deployment/DeploymentFeatureExtraction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3043">
-              <caret line="179" column="102" selection-start-line="179" selection-start-column="102" selection-end-line="179" selection-end-column="102" />
+            <state relative-caret-position="816">
+              <caret line="48" column="93" selection-start-line="48" selection-start-column="72" selection-end-line="48" selection-end-column="93" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -87,11 +89,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/MainController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2858">
-              <caret line="206" column="17" lean-forward="true" selection-start-line="206" selection-start-column="17" selection-end-line="206" selection-end-column="17" />
+            <state relative-caret-position="215">
+              <caret line="71" column="56" selection-start-line="71" selection-start-column="56" selection-end-line="71" selection-end-column="56" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Data/Dataset.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="203">
+              <caret line="223" column="16" selection-start-line="223" selection-start-column="16" selection-end-line="223" selection-end-column="16" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -131,12 +145,13 @@
       <find>handlefi</find>
       <find>finishw</find>
       <find>().get</find>
-      <find>makein</find>
       <find>writeall</find>
       <find>writer</find>
       <find>test</find>
       <find>testfrequencylis</find>
       <find>.csv</find>
+      <find>finalTestFeaturesPath</find>
+      <find>makein</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -151,11 +166,12 @@
         <option value="$PROJECT_DIR$/src/main/java/Maps/doubleMap.java" />
         <option value="$PROJECT_DIR$/src/main/java/Data/FileActions.java" />
         <option value="$PROJECT_DIR$/src/main/java/Entropy/CalculateEntropy.java" />
-        <option value="$PROJECT_DIR$/src/main/java/MainController.java" />
         <option value="$PROJECT_DIR$/src/main/java/Data/Dataset.java" />
         <option value="$PROJECT_DIR$/src/main/java/FeaturesExtractors/ByteFrequenciesFeatures.java" />
         <option value="$PROJECT_DIR$/src/main/java/FeaturesExtractors/DividingStringsFeatures.java" />
         <option value="$PROJECT_DIR$/src/main/java/Deployment/DepolymentFeatureExtraction.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Deployment/DeploymentFeatureExtraction.java" />
+        <option value="$PROJECT_DIR$/src/main/java/MainController.java" />
       </list>
     </option>
   </component>
@@ -245,7 +261,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1617463733088" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1617464067871" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Old Dekstop/ComputeTestSetVectors" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -273,12 +289,12 @@
       <option name="presentableId" value="Default" />
       <updated>1596121568900</updated>
       <workItem from="1596121574810" duration="5867000" />
-      <workItem from="1617387167028" duration="27267000" />
+      <workItem from="1617387167028" duration="27603000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33134000" />
+    <option name="totallyTimeSpent" value="33470000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1435" height="772" extended-state="6" />
@@ -402,13 +418,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/FeaturesExtractors/DividingStringsFeatures.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="78" column="22" lean-forward="true" selection-start-line="78" selection-start-column="22" selection-end-line="78" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Data/Dataset.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="203">
-          <caret line="63" column="62" selection-start-line="63" selection-start-column="62" selection-end-line="63" selection-end-column="62" />
+          <caret line="223" column="16" selection-start-line="223" selection-start-column="16" selection-end-line="223" selection-end-column="16" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Deployment/DeploymentFeatureExtraction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="816">
+          <caret line="48" column="93" selection-start-line="48" selection-start-column="72" selection-end-line="48" selection-end-column="93" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/FeaturesExtractors/ByteFrequenciesFeatures.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="131" column="23" selection-start-line="131" selection-start-column="23" selection-end-line="131" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -423,34 +463,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/FeaturesExtractors/DividingStringsFeatures.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="78" column="22" lean-forward="true" selection-start-line="78" selection-start-column="22" selection-end-line="78" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/FeaturesExtractors/ByteFrequenciesFeatures.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="131" column="23" selection-start-line="131" selection-start-column="23" selection-end-line="131" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/MainController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2858">
-          <caret line="206" column="17" lean-forward="true" selection-start-line="206" selection-start-column="17" selection-end-line="206" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Deployment/DepolymentFeatureExtraction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3043">
-          <caret line="179" column="102" selection-start-line="179" selection-start-column="102" selection-end-line="179" selection-end-column="102" />
+        <state relative-caret-position="215">
+          <caret line="71" column="56" selection-start-line="71" selection-start-column="56" selection-end-line="71" selection-end-column="56" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

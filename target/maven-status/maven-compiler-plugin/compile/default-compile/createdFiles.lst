@@ -2,6 +2,7 @@ Data\FileActions.class
 Entropy\CalculateEntropy.class
 FeaturesExtractors\DividingStringsFeatures.class
 Maps\integerMap.class
+Deployment\DeploymentFeatureExtraction.class
 Maps\stringsMap.class
 FeaturesExtractors\BoundedPQueue.class
 FeaturesExtractors\FeaturesCollection.class

@@ -1,6 +1,5 @@
 import Data.Dataset;
-import FeaturesExtractors.ByteFrequenciesFeatures;
-import FeaturesExtractors.DividingStringsFeatures;
+import Deployment.DeploymentFeatureExtraction;
 import Maps.basicMap;
 import com.squareup.javapoet.ClassName;
 
@@ -24,6 +23,7 @@ public class MainController {
     // Important Paths
     private static String EXPERIMENT_DATASET_PATH = EXPERIMENT_PATH + "/CurrentDrebinDataset";
     private static String DATASET_LABELS_PATH = EXPERIMENT_PATH + "/Labels.csv";
+    private static String DATASET_TEST_FEATURES_PATH = EXPERIMENT_PATH + "/Feature_Names.csv";
     private static String NAMES_OF_FAMILIES_IN_DATASET = EXPERIMENT_PATH + "/Families.csv";
     private static String DATASET_OUTPUT_FEATURES = EXPERIMENT_PATH + "/Features";
     private static String EXTRACTIONS_FOR_FUTURE_RE_BUILDING =  EXPERIMENT_PATH + "/Results";
@@ -45,10 +45,10 @@ public class MainController {
         Dataset dataset = new Dataset(EXPERIMENT_DATASET_PATH, train, test, EXTRACTIONS_FOR_FUTURE_RE_BUILDING,
                 BYTE_SEQUENCE_MAX_LENGTH);
 
-        dataset.completeInitialStages(); //Extract all strings from the malicious families (until stage-2, included)
+        /*dataset.completeInitialStages(); //Extract all strings from the malicious families (until stage-2, included)
 
         log.info("Finished Extraction Of Pair-Wise Separating Strings From Dataset With: " +
-                String.valueOf(dataset.getDataSetSize()) + " Files!");
+               String.valueOf(dataset.getDataSetSize()) + " Files!");
 
         DividingStringsFeatures dividingFeatures = new DividingStringsFeatures(DATASET_OUTPUT_FEATURES,
                 MAX_PAIRWISE_FEATURES, dataset);
@@ -61,6 +61,12 @@ public class MainController {
         dataset.clearMaps();
 
         log.info("Ended extraction of stages 1-4 in DAEMON's algorithm  (feature-vector computation)");
+        */
+
+
+        DeploymentFeatureExtraction testSetFeaturesComputation = new DeploymentFeatureExtraction(DATASET_OUTPUT_FEATURES,
+                dataset, DATASET_TEST_FEATURES_PATH);
+        testSetFeaturesComputation.computeFeatures();
     }
 
     private static void copyFolder(File source, File destination) //External
