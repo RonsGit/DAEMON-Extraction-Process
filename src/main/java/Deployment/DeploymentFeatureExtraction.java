@@ -114,6 +114,11 @@ public class DeploymentFeatureExtraction extends FeaturesCollection {
             if (directoryListing != null) {
                 ConcurrentMap<CharSequence, Integer> family_sizes = buildTrainOrTestSizes(testSet);
                 log.info(Arrays.toString(family_sizes.entrySet().toArray()));
+                String[] header = new String[allNGrams.length+2];
+                System.arraycopy(allNGrams, 0, header, 0, allNGrams.length);
+                header[header.length-1] = "Family Name";
+                header[header.length-2] = "File Name";
+                writer.writeNext(header);
 
                 for (File maliciousSample : directoryListing) {
                     String sampleName = getSampleName(maliciousSample.getName());
@@ -133,7 +138,7 @@ public class DeploymentFeatureExtraction extends FeaturesCollection {
                             hitsMap.compute(hit.value, (k, v) -> (v != null) ? v + 1 : 1);
                         }
 
-                        String[] toPrint = new String[this.getDataFrameHeader().size()];
+                        String[] toPrint = new String[allNGrams.length + 2];
 
                         for (int i = 0; i < allNGrams.length; i++) {
                             if (hitsMap.containsKey(allNGrams[i]))
