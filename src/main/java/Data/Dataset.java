@@ -17,13 +17,12 @@ import static Data.FileActions.*;
 
 public class Dataset {
 
-    //Static Fields
-    private static String STRINGS_FOLDER = "/allTrainStringsInEntropy";
-    private static String TRAIN_FOLDER = "/trainMap";
-    private static String TEST_FOLDER = "/testMap";
-    private static String KEY_EXAMPLE = "01jsnpXSAlgw6aPeDxrU01j01jsnpXSAlgwj01jsnpXSAlgwjAlgwj";
-    private static int GUESS_SIZE = 20_000_000, SET_GUESS=10_868;
     private static long size = Math.floorDiv((long) 10*Integer.MAX_VALUE, 13);
+
+    // Important Public Fields
+    public static String TRAIN_FOLDER = "/trainMap";
+    public static String TEST_FOLDER = "/testMap";
+    public static int SET_APPROX_SIZE =5000;
 
     //Private Fields
     private String dataSetPath, extractionPath;
@@ -47,6 +46,7 @@ public class Dataset {
         this.familiesStrings = new ConcurrentHashMap<>();
         this.datasetSetsSaveReadMaps = new ConcurrentHashMap<>();
         log.info("Created An Iteration Map Of: " + String.valueOf(size) + " Entries");
+        String KEY_EXAMPLE = "01jsnpXSAlgw6aPeDxrU01j01jsnpXSAlgwj01jsnpXSAlgwjAlgwj";
         this.familyIterationMap = new integerMap("", size, KEY_EXAMPLE);
         buildDirs(train);
         buildTrainTestSets(train, test);
@@ -197,28 +197,31 @@ public class Dataset {
 
     private void buildDirs(Map<String,String> trainMap) {
         log.info("Started Building/Using Dirs - For Families, Train/Test Maps");
-        dirCreation(extractionPath);
-        dirCreation(extractionPath + STRINGS_FOLDER);
+        createAllDirsOfPath(extractionPath);
+        //Static Fields
+        String STRINGS_FOLDER = "/allTrainStringsInEntropy";
+        createAllDirsOfPath(extractionPath + STRINGS_FOLDER);
         for (String family : new HashSet<>(trainMap.values())) {
             String extension = extractionPath + STRINGS_FOLDER + "/" + family;
-            dirCreation(extension);
+            createAllDirsOfPath(extension);
+            int GUESS_SIZE = 20_000_000;
             integerMap mapReader = new integerMap(extension + "/" + family + ".txt", GUESS_SIZE);
             familiesStrings.putIfAbsent(family, mapReader);
         }
 
-        dirCreation(extractionPath+ TRAIN_FOLDER);
-        basicMap trainMapReader = new basicMap(extractionPath+ TRAIN_FOLDER + "/train.txt", SET_GUESS);
+        createAllDirsOfPath(extractionPath+ TRAIN_FOLDER);
+        basicMap trainMapReader = new basicMap(extractionPath+ TRAIN_FOLDER + "/train.txt", SET_APPROX_SIZE);
         trainSet = trainMapReader.getSaveReadMap();
         datasetSetsSaveReadMaps.put("Train", trainMapReader);
-        dirCreation(extractionPath+ TEST_FOLDER);
-        basicMap testMapReader = new basicMap(extractionPath+ TEST_FOLDER + "/test.txt", SET_GUESS);
+        createAllDirsOfPath(extractionPath+ TEST_FOLDER);
+        basicMap testMapReader = new basicMap(extractionPath+ TEST_FOLDER + "/test.txt", SET_APPROX_SIZE);
         testSet = testMapReader.getSaveReadMap();
         datasetSetsSaveReadMaps.put("Test", testMapReader);
     }
 
     //Public API/Public Helper Methods
 
-    public void computeSets() {
+    public void completeInitialStages() {
         log.info("Started Computing Sets!");
         log.info("Built Train Set With: " + String.valueOf(trainSet.size()) + " Files!");
         datasetSetsSaveReadMaps.get("Train").saveFile(trainSet);
@@ -240,7 +243,7 @@ public class Dataset {
         return toReturn;
     }
 
-    public static void dirCreation(String path){
+    public static void createAllDirsOfPath(String path){
         File trainFolderPerPathFile = new File(path);
         if (!trainFolderPerPathFile.exists()) {
             trainFolderPerPathFile.mkdir();

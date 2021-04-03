@@ -2,21 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ce609382-07dc-42e9-8808-4223f37e1a50" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/Ron.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/Ron.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Data/Dataset.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Data/Dataset.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Data/FileActions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Data/FileActions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Entropy/CalculateEntropy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Entropy/CalculateEntropy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/FeaturesExtractors/ByteFrequenciesFeatures.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/FeaturesExtractors/ByteFrequenciesFeatures.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/FeaturesExtractors/DividingStringsFeatures.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/FeaturesExtractors/DividingStringsFeatures.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/FeaturesExtractors/FeaturesCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/FeaturesExtractors/FeaturesCollection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Maps/basicMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Maps/basicMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Maps/doubleMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Maps/doubleMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Maps/integerMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Maps/integerMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Maps/stringsMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Maps/stringsMap.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -30,38 +20,72 @@
       <usages-collector id="statistics.lifecycle.project">
         <counts>
           <entry key="project.open.time.12" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.open.time.20" value="1" />
+          <entry key="project.opened" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="15" />
+          <entry key="java" value="23" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="15" />
+          <entry key="JAVA" value="23" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="313" />
+          <entry key="java" value="2905" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="313" />
+          <entry key="JAVA" value="2905" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/FeaturesExtractors/ByteFrequenciesFeatures.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="799">
+            <state>
               <caret line="63" column="9" selection-start-line="63" selection-start-column="9" selection-end-line="63" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Entropy/CalculateEntropy.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="32" column="44" lean-forward="true" selection-start-line="32" selection-start-column="44" selection-end-line="32" selection-end-column="44" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Data/Dataset.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="27" column="41" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/MainController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="339">
+              <caret line="171" column="13" lean-forward="true" selection-start-line="171" selection-start-column="13" selection-end-line="171" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -69,8 +93,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/FeaturesExtractors/DividingStringsFeatures.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3587">
-              <caret line="229" column="56" selection-start-line="229" selection-start-column="56" selection-end-line="229" selection-end-column="56" />
+            <state relative-caret-position="-1465">
+              <caret line="81" column="19" selection-start-line="81" selection-start-column="16" selection-end-line="81" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -81,6 +105,9 @@
     <findStrings>
       <find>dataSetType</find>
       <find>handleFiles</find>
+      <find>TRAIN_FOLDER</find>
+      <find>test.txt</find>
+      <find>AHO</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -93,12 +120,12 @@
         <option value="$PROJECT_DIR$/src/main/java/Maps/stringsMap.java" />
         <option value="$PROJECT_DIR$/src/main/java/Maps/basicMap.java" />
         <option value="$PROJECT_DIR$/src/main/java/Maps/doubleMap.java" />
-        <option value="$PROJECT_DIR$/src/main/java/MainController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Data/Dataset.java" />
         <option value="$PROJECT_DIR$/src/main/java/Data/FileActions.java" />
         <option value="$PROJECT_DIR$/src/main/java/Entropy/CalculateEntropy.java" />
         <option value="$PROJECT_DIR$/src/main/java/FeaturesExtractors/ByteFrequenciesFeatures.java" />
         <option value="$PROJECT_DIR$/src/main/java/FeaturesExtractors/DividingStringsFeatures.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Data/Dataset.java" />
+        <option value="$PROJECT_DIR$/src/main/java/MainController.java" />
       </list>
     </option>
   </component>
@@ -124,7 +151,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-9" />
     <option name="y" value="18" />
     <option name="width" value="603" />
@@ -196,7 +223,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1596270258771" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1617444254172" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Old Dekstop/ComputeTestSetVectors" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -224,43 +251,44 @@
       <option name="presentableId" value="Default" />
       <updated>1596121568900</updated>
       <workItem from="1596121574810" duration="5867000" />
+      <workItem from="1617387167028" duration="12653000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5867000" />
+    <option name="totallyTimeSpent" value="18520000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-6" y="-6" width="1435" height="772" extended-state="7" />
+    <frame x="-6" y="-6" width="1435" height="772" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Image Layers" />
-      <window_info id="Designer" />
-      <window_info id="UI Designer" />
-      <window_info id="Capture Tool" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24945612" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20594634" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32866043" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32866043" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette" />
-      <window_info anchor="right" id="Theme Preview" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="right" id="Palette&#9;" />
-      <window_info anchor="right" id="Database" />
-      <window_info active="true" anchor="right" id="Maven Projects" visible="true" weight="0.32994923" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Palette&#9;" order="6" />
+      <window_info anchor="right" id="Database" order="7" />
+      <window_info anchor="right" id="Maven Projects" order="8" visible="true" weight="0.055837564" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -302,13 +330,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/FeaturesExtractors/BoundedPQueue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/FeaturesExtractors/FeaturesCollection.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
@@ -316,20 +337,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Data/Dataset.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/FeaturesExtractors/BoundedPQueue.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="68">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MainController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/FeaturesExtractors/ByteFrequenciesFeatures.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="33" selection-start-line="33" selection-end-line="33" />
+        <state>
+          <caret line="63" column="9" selection-start-line="63" selection-start-column="9" selection-end-line="63" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -337,6 +355,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="30" column="16" lean-forward="true" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Data/Dataset.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="27" column="41" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -349,15 +377,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/FeaturesExtractors/DividingStringsFeatures.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3587">
-          <caret line="229" column="56" selection-start-line="229" selection-start-column="56" selection-end-line="229" selection-end-column="56" />
+        <state relative-caret-position="-1465">
+          <caret line="81" column="19" selection-start-line="81" selection-start-column="16" selection-end-line="81" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/FeaturesExtractors/ByteFrequenciesFeatures.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/MainController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="799">
-          <caret line="63" column="9" selection-start-line="63" selection-start-column="9" selection-end-line="63" selection-end-column="9" />
+        <state relative-caret-position="339">
+          <caret line="171" column="13" lean-forward="true" selection-start-line="171" selection-start-column="13" selection-end-line="171" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

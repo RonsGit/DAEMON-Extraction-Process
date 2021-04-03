@@ -4,7 +4,7 @@ import Data.Dataset;
 
 import java.util.ArrayList;
 
-import static Data.Dataset.dirCreation;
+import static Data.Dataset.createAllDirsOfPath;
 
 public abstract class FeaturesCollection {
 
@@ -14,7 +14,7 @@ public abstract class FeaturesCollection {
     private Dataset toExtractFrom;
 
     FeaturesCollection(String featureCollectionPath, Dataset toExtractFrom) {
-        dirCreation(featureCollectionPath);
+        createAllDirsOfPath(featureCollectionPath);
         this.featureCollectionPath = featureCollectionPath;
         this.dataFrameHeader = new ArrayList<>();
         this.featuresThemselves = new ArrayList<>();

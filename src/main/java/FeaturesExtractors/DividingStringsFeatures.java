@@ -33,7 +33,7 @@ public class DividingStringsFeatures extends FeaturesCollection {
         super(featureCollectionPath, toExtractFrom);
         this.maxAmount = maxAmount;
         String path = toExtractFrom.getExtractionPath()+"/DividingStrings";
-        dirCreation(path);
+        createAllDirsOfPath(path);
         this.featuresList = new stringsMap(path + "/" + "DividingStrings.txt", toExtractFrom.getTrainSet().size(), maxAmount);
         this.testFeaturesList = new stringsMap(path + "/" + "DividingTestStrings.txt", toExtractFrom.getTestSet().size(), maxAmount);
         this.combinationsMap = new ConcurrentHashMap<>();
@@ -47,7 +47,7 @@ public class DividingStringsFeatures extends FeaturesCollection {
         int combinations = nCr(trainFamilies.size(), 2);
         double calc = Math.floorDiv(maxAmount, combinations);
         int perGroupFeatures = (int) Math.round(calc);
-        dirCreation(this.getFeatureCollectionPath()+ C_EXTENSION);
+        createAllDirsOfPath(this.getFeatureCollectionPath()+ C_EXTENSION);
         ConcurrentMap<String, Double> prevStringsWithScores =
                 getBestStringsFromPrevCombinations(SAFETY_MARGIN *perGroupFeatures, perGroupFeatures);
         Set<String> previousCombinations = extractNamesOfPrevCombinations();
@@ -167,7 +167,7 @@ public class DividingStringsFeatures extends FeaturesCollection {
 
     private ConcurrentMap<CharSequence, Double> createOpenCombinationDatabase(String combination) {
         String fullPath = this.getFeatureCollectionPath()+ C_EXTENSION +"/"+ combination;
-        dirCreation(fullPath);
+        createAllDirsOfPath(fullPath);
         doubleMap mapReader = new doubleMap(fullPath + "/" + combination + S_EXTENSION, COMBINATION_GUESS);
         return mapReader.getSaveReadMap();
     }
@@ -178,7 +178,7 @@ public class DividingStringsFeatures extends FeaturesCollection {
 
     private void buildAllFeatures(){
         String resultPath = this.getFeatureCollectionPath()+ R_EXTENSION;
-        dirCreation(resultPath);
+        createAllDirsOfPath(resultPath);
         buildDataFrameHeader();
         FileWriter outputStringFile, outputTestStringFile;
         try {
