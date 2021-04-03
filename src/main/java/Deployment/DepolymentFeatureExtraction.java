@@ -98,7 +98,7 @@ public class DepolymentFeatureExtraction extends FeaturesCollection {
         FileWriter outputStringFile;
 
         try {
-            outputStringFile = new FileWriter(resultPath + "/testStringsAndCounts.csv");
+            outputStringFile = new FileWriter(resultPath + "/AllTestStringsAndCounts.csv");
             CSVWriter writer = new CSVWriter(outputStringFile);
             File dir = new File(this.getToExtractFrom().getDataSetPath());
             File[] directoryListing = dir.listFiles();
@@ -177,7 +177,7 @@ public class DepolymentFeatureExtraction extends FeaturesCollection {
         int numTotal=0;
 
         try {
-            outputStringFile = new FileWriter(this.getFeatureCollectionPath() + "/allTestBytes.csv");
+            outputStringFile = new FileWriter(this.getFeatureCollectionPath() + "/allTestByteSequencesFeatures.csv");
             CSVWriter testWriter = new CSVWriter(outputStringFile);
             ConcurrentMap<CharSequence, String> testSet = this.getToExtractFrom().getTestSet();
             String[] firstLine = this.getDataFrameHeader().toArray(new String[0]);
