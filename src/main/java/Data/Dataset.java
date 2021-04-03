@@ -254,10 +254,6 @@ public class Dataset {
         return trainSet;
     }
 
-    public ConcurrentMap<CharSequence, String> getStringsTrainSet() {
-        return trainSet;
-    }
-
     public ConcurrentMap<CharSequence, String> getTestSet() {
         return testSet;
     }

@@ -22,33 +22,27 @@ public class ByteFrequenciesFeatures extends FeaturesCollection {
 
     private final ConcurrentMap<CharSequence, String> trainSet;
     private ConcurrentMap<String, String[]> trainFrequencyList;
-    private ConcurrentMap<String, String[]> testFrequencyList;
     private static final Logger log = Logger.getLogger(ClassName.class.getName());
 
     public ByteFrequenciesFeatures(String featureCollectionPath, Dataset toExtractFrom) {
         super(featureCollectionPath, toExtractFrom);
         this.trainFrequencyList = new ConcurrentHashMap<>();
-        this.testFrequencyList = new ConcurrentHashMap<>();
-        this.trainSet = this.getToExtractFrom().getStringsTrainSet();
+        this.trainSet = this.getToExtractFrom().getTrainSet();
     }
 
     @Override
+    // Note: Training feature vectors computation time (classification time) is computed using a SINGLE CORE
     public void computeFeatures() {
         log.info("Started Calculating All Byte Frequencies Features");
         buildDataFrameHeader();
         FileWriter outputStringFile;
-        FileWriter outputTestStringFile;
         int numTotal=0;
         try {
             outputStringFile = new FileWriter(this.getFeatureCollectionPath() + "/allTrainBytes.csv");
             CSVWriter trainWriter = new CSVWriter(outputStringFile);
-            outputTestStringFile = new FileWriter(this.getFeatureCollectionPath() + "/allTestBytes.csv");
-            CSVWriter testWriter = new CSVWriter(outputTestStringFile);
-            ConcurrentMap<CharSequence, String> trainSet = this.getToExtractFrom().getStringsTrainSet();
-            ConcurrentMap<CharSequence, String> testSet = this.getToExtractFrom().getTestSet();
+            ConcurrentMap<CharSequence, String> trainSet = this.getToExtractFrom().getTrainSet();
             String[] firstLine = this.getDataFrameHeader().toArray(new String[0]);
             trainWriter.writeNext(firstLine);
-            testWriter.writeNext(firstLine);
             File dir = new File(this.getToExtractFrom().getDataSetPath());
             File[] directoryListing = dir.listFiles();
             int num_of_characters = 16; //16 HEX Characters
@@ -56,7 +50,7 @@ public class ByteFrequenciesFeatures extends FeaturesCollection {
             if (directoryListing != null) {
                 for(File maliciousSample: directoryListing) {
                     String sampleName = getSampleName(maliciousSample.getName());
-                    if (trainSet.containsKey(sampleName) || testSet.containsKey(sampleName)) {
+                    if (trainSet.containsKey(sampleName)) {
                         int[] freq = new int[freqSize];
                         String[] realStrings = new String[freq.length + 1];
                         for (int i = 0; i < freq.length; i++)
@@ -83,16 +77,11 @@ public class ByteFrequenciesFeatures extends FeaturesCollection {
             }
 
             log.info("Handled: " + String.valueOf(numTotal) + " Files Bytes!");
-            int size = (trainFrequencyList.size() +  testFrequencyList.size());
-            log.info("Actually Handled: " + String.valueOf(trainFrequencyList.size()) + " Train Files, " +
-                    String.valueOf(testFrequencyList.size()) + " Test Files, Total Of: " + String.valueOf(size) + " Files!");
+            log.info("Actually Handled: " + String.valueOf(trainFrequencyList.size()) + "Train Files");
 
             writeAllLines(trainFrequencyList, trainWriter);
-            writeAllLines(testFrequencyList, testWriter);
             trainWriter.flush();
             trainWriter.close();
-            testWriter.flush();
-            testWriter.close();
             log.info("Finished Calculating All Byte Frequencies Features");
 
         } catch (IOException e) {
@@ -103,8 +92,6 @@ public class ByteFrequenciesFeatures extends FeaturesCollection {
     private void insertKey(String sampleName, String[] realStrings) {
         if (trainSet.containsKey(sampleName)) {
             trainFrequencyList.put(sampleName, realStrings);
-        } else {
-            testFrequencyList.put(sampleName, realStrings);
         }
     }
 
@@ -126,8 +113,6 @@ public class ByteFrequenciesFeatures extends FeaturesCollection {
         String[] infoInsertion = makeInfo(realStrings);
         if (trainSet.containsKey(sampleName)) {
             trainFrequencyList.replace(sampleName, infoInsertion);
-        } else {
-            testFrequencyList.replace(sampleName, infoInsertion);
         }
     }
 
@@ -144,7 +129,7 @@ public class ByteFrequenciesFeatures extends FeaturesCollection {
         return true;
     }
 
-    static void writeAllLines(ConcurrentMap<String, String[]> frequencyList, CSVWriter writer) {
+    public static void writeAllLines(ConcurrentMap<String, String[]> frequencyList, CSVWriter writer) {
         List<String> sortedKeys = getSortedStringKeys(frequencyList.keySet());
         List<String[]> actualFrequencyList = new LinkedList<>();
         for(String s: sortedKeys) {
@@ -158,7 +143,7 @@ public class ByteFrequenciesFeatures extends FeaturesCollection {
         int num_of_characters = 16;
         for(int i=0; i<num_of_characters*num_of_characters; i++){
             if(i<256){
-                header.add("Android - " + Integer.toHexString(i).toUpperCase());
+                header.add(Integer.toHexString(i).toUpperCase());
             }
         }
         header.add("FileName");

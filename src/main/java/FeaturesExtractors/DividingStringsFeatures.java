@@ -23,7 +23,7 @@ public class DividingStringsFeatures extends FeaturesCollection {
 
     private static String C_EXTENSION = "/Maps", S_EXTENSION ="_Scores.txt", L_EXTENSION="_Lines.txt", R_EXTENSION ="/Results";
     private static Integer SAFETY_MARGIN = 100, COMBINATION_GUESS=5_000_000;
-    private stringsMap featuresList, testFeaturesList;
+    private stringsMap featuresList;
     private ConcurrentMap<String, doubleMap> combinationsMap;
     private ConcurrentMap<String, ConcurrentMap<CharSequence, Double>> combinationsMaps;
     private int maxAmount;
@@ -35,7 +35,6 @@ public class DividingStringsFeatures extends FeaturesCollection {
         String path = toExtractFrom.getExtractionPath()+"/DividingStrings";
         createAllDirsOfPath(path);
         this.featuresList = new stringsMap(path + "/" + "DividingStrings.txt", toExtractFrom.getTrainSet().size(), maxAmount);
-        this.testFeaturesList = new stringsMap(path + "/" + "DividingTestStrings.txt", toExtractFrom.getTestSet().size(), maxAmount);
         this.combinationsMap = new ConcurrentHashMap<>();
         this.combinationsMaps = new ConcurrentHashMap<>();
     }
@@ -55,82 +54,24 @@ public class DividingStringsFeatures extends FeaturesCollection {
         log.info("Extracted: " + String.valueOf(this.getFeaturesThemselves().size()) + " Previous Strings");
         extractRemainingCombinations(previousCombinations, trainFamilies, perGroupFeatures);
         log.info("Extracted: " + String.valueOf(this.getFeaturesThemselves().size()) + " Strings Totally");
-        buildAllFeatures();
+        buildTrainFeatures();
     }
 
-    private void
-    handleFiles(ConcurrentMap<CharSequence, String> trainSet, File[] directoryListing) {
-        ConcurrentMap<CharSequence, String> testSet = this.getToExtractFrom().getTestSet();
-        if (directoryListing != null) {
-            ConcurrentMap<CharSequence, Integer> family_sizes = buildTrainOrTestSizes(trainSet);
-            log.info(Arrays.toString(family_sizes.entrySet().toArray()));
-            for(File maliciousSample: directoryListing){
-                String sampleName = getSampleName(maliciousSample.getName());
-                String familyName;
-                if(trainSet.containsKey(sampleName)) {
-                    familyName = trainSet.get(sampleName);
-                }
-                else {
-                    familyName = testSet.get(sampleName);
-                }
-                String[] toSearch = new String[this.getFeaturesThemselves().size()];
-                for(int i=0; i<toSearch.length; i++)
-                    toSearch[i] = this.getFeaturesThemselves().get(i);
-                TreeMap<String, String> map = new TreeMap<>();
-                for (String key : toSearch)
-                    map.put(key, key);
-                AhoCorasickDoubleArrayTrie<String> ourTree = new AhoCorasickDoubleArrayTrie<>();
-                ourTree.build(map);
-                final String fileContent = FileActions.getAndroidFileContent(maliciousSample);
-                ConcurrentMap<String, Integer> hitsMap = new ConcurrentHashMap<>();
-                List<AhoCorasickDoubleArrayTrie.Hit<String>> hits = ourTree.parseText(fileContent);
-                for(AhoCorasickDoubleArrayTrie.Hit<String> hit : hits){
-                    if(hit.value.length()<16)
-                        hitsMap.compute(hit.value, (k, v) -> (v!=null) ? v + 1 : 1);
-                    else
-                        hitsMap.putIfAbsent(hit.value, 1);
-                }
-                String[] toPrint = new String[this.getDataFrameHeader().size()];
-                for(int i=0; i<toSearch.length; i++){
-                    if(hitsMap.containsKey(toSearch[i]))
-                        toPrint[i] = (hitsMap.get(toSearch[i])).toString();
-                    else
-                        toPrint[i]="0";
-                }
-                toPrint[toPrint.length-1] = familyName;
-                String fileName = getSampleName(maliciousSample.getName());
-                toPrint[toPrint.length-2] = fileName;
-                if(trainSet.containsKey(fileName))
-                    featuresList.getSaveReadMap().put(fileName, toPrint);
-                else
-                    testFeaturesList.getSaveReadMap().put(fileName, toPrint);
-                log.info("Finished Extracting Hits From File: " + fileName);
-            }
-        }
-    }
 
-    private void finishWriting(CSVWriter writer, boolean isTrain) throws IOException {
-        writeAllLines(writer, isTrain);
+    private void finishWriting(CSVWriter writer) throws IOException {
+        writeAllLines(writer);
         writer.flush();
         writer.close();
     }
 
-    private void writeAllLines(CSVWriter writer, boolean isTrain) {
-        if(isTrain){
-            List<String> sortedKeys = getSortedKeys(featuresList.getSaveReadMap().keySet());
-            for(String s: sortedKeys){
-                writer.writeNext(featuresList.getSaveReadMap().get(s));
-            }
-        }
-        else {
-            List<String> sortedKeys = getSortedKeys(testFeaturesList.getSaveReadMap().keySet());
-            for(String s: sortedKeys){
-                writer.writeNext(testFeaturesList.getSaveReadMap().get(s));
-            }
+    private void writeAllLines(CSVWriter writer) {
+        List<String> sortedKeys = getSortedKeys(featuresList.getSaveReadMap().keySet());
+        for(String s: sortedKeys){
+            writer.writeNext(featuresList.getSaveReadMap().get(s));
         }
     }
 
-    static List<String> getSortedKeys(Set<CharSequence> keySet) {
+    public static List<String> getSortedKeys(Set<CharSequence> keySet) {
         List<String> myList = new ArrayList<>();
         for(CharSequence c : keySet)
             myList.add(c.toString());
@@ -143,7 +84,6 @@ public class DividingStringsFeatures extends FeaturesCollection {
         Collections.sort(myList);
         return myList;
     }
-
 
     private void extractRemainingCombinations(Set<String> previousCombinations, ConcurrentMap<String, Integer> trainFamilies, int perGroup){
         for(String family1: trainFamilies.keySet()) {
@@ -176,34 +116,72 @@ public class DividingStringsFeatures extends FeaturesCollection {
         return this.getToExtractFrom().getFamilyStrings(familyName).getSaveReadMap();
     }
 
-    private void buildAllFeatures(){
+    private void buildTrainFeatures(){
         String resultPath = this.getFeatureCollectionPath()+ R_EXTENSION;
         createAllDirsOfPath(resultPath);
         buildDataFrameHeader();
-        FileWriter outputStringFile, outputTestStringFile;
+        FileWriter outputStringFile;
         try {
             outputStringFile = new FileWriter(resultPath + "/trainStringsAndCounts.csv");
-            outputTestStringFile = new FileWriter(resultPath + "/testStringsAndCounts.csv");
             CSVWriter writer = new CSVWriter(outputStringFile);
-            CSVWriter testWriter = new CSVWriter(outputTestStringFile);
             ConcurrentMap<CharSequence, String> trainSet = this.getToExtractFrom().getTrainSet();
             String[] firstLine = this.getDataFrameHeader().toArray(new String[0]);
             writer.writeNext(firstLine);
-            testWriter.writeNext(firstLine);
             File dir = new File(this.getToExtractFrom().getDataSetPath());
             File[] directoryListing = dir.listFiles();
             handleFiles(trainSet, directoryListing);
-            finishWriting(writer, true);
-            finishWriting(testWriter, false);
+            finishWriting(writer);
             log.info("Finished Extracting String Repeats From Each Train File");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    // Note: Training feature vectors computation time (classification time) is computed using a SINGLE CORE
+    private void handleFiles(ConcurrentMap<CharSequence, String> filesSet, File[] directoryListing) {
+        if (directoryListing != null) {
+            ConcurrentMap<CharSequence, Integer> family_sizes = buildTrainOrTestSizes(filesSet);
+            log.info(Arrays.toString(family_sizes.entrySet().toArray()));
+            for (File maliciousSample : directoryListing) {
+                String sampleName = getSampleName(maliciousSample.getName());
+                String familyName;
+                if (filesSet.containsKey(sampleName)) {
+                    familyName = filesSet.get(sampleName);
+                    String[] toSearch = new String[this.getFeaturesThemselves().size()];
+                    for (int i = 0; i < toSearch.length; i++)
+                        toSearch[i] = this.getFeaturesThemselves().get(i);
+                    TreeMap<String, String> map = new TreeMap<>();
+                    for (String key : toSearch)
+                        map.put(key, key);
+                    AhoCorasickDoubleArrayTrie<String> ourTree = new AhoCorasickDoubleArrayTrie<>();
+                    ourTree.build(map);
+                    final String fileContent = FileActions.getAndroidFileContent(maliciousSample);
+                    ConcurrentMap<String, Integer> hitsMap = new ConcurrentHashMap<>();
+                    List<AhoCorasickDoubleArrayTrie.Hit<String>> hits = ourTree.parseText(fileContent);
+                    for (AhoCorasickDoubleArrayTrie.Hit<String> hit : hits) {
+                        hitsMap.putIfAbsent(hit.value, 1);
+                        hitsMap.compute(hit.value, (k, v) -> (v != null) ? v + 1 : 1);
+                        String[] toPrint = new String[this.getDataFrameHeader().size()];
+                        for (int i = 0; i < toSearch.length; i++) {
+                            if (hitsMap.containsKey(toSearch[i]))
+                                toPrint[i] = (hitsMap.get(toSearch[i])).toString();
+                            else
+                                toPrint[i] = "0";
+                        }
+                        toPrint[toPrint.length - 1] = familyName;
+                        String fileName = getSampleName(maliciousSample.getName());
+                        toPrint[toPrint.length - 2] = fileName;
+                        featuresList.getSaveReadMap().put(fileName, toPrint);
+                        log.info("Finished Extracting Hits From Train File: " + fileName);
+                    }
+                }
+            }
+        }
+    }
+
     private void buildDataFrameHeader() {
         for(String s: this.getFeaturesThemselves()){
-            this.getDataFrameHeader().add("Android - " + s);
+            this.getDataFrameHeader().add(s);
         }
         this.getDataFrameHeader().add("FileName");
         this.getDataFrameHeader().add("FamilyName");

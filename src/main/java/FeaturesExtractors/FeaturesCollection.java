@@ -13,7 +13,7 @@ public abstract class FeaturesCollection {
     private ArrayList<String> featuresThemselves;
     private Dataset toExtractFrom;
 
-    FeaturesCollection(String featureCollectionPath, Dataset toExtractFrom) {
+    protected FeaturesCollection(String featureCollectionPath, Dataset toExtractFrom) {
         createAllDirsOfPath(featureCollectionPath);
         this.featureCollectionPath = featureCollectionPath;
         this.dataFrameHeader = new ArrayList<>();
@@ -23,15 +23,15 @@ public abstract class FeaturesCollection {
 
     public abstract void computeFeatures();
 
-    ArrayList<String> getDataFrameHeader() {
+    protected ArrayList<String> getDataFrameHeader() {
         return dataFrameHeader;
     }
 
-    String getFeatureCollectionPath() {
+    protected String getFeatureCollectionPath() {
         return featureCollectionPath;
     }
 
-    ArrayList<String> getFeaturesThemselves() {
+    protected ArrayList<String> getFeaturesThemselves() {
         return featuresThemselves;
     }
 
