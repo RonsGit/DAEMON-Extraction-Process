@@ -17,6 +17,7 @@ import static Data.Dataset.buildTrainOrTestSizes;
 import static Data.Dataset.createAllDirsOfPath;
 import static Data.FileActions.getAndroidFileContent;
 import static Data.FileActions.getSampleName;
+import static Entropy.CalculateEntropy.buildFrequencies;
 import static FeaturesExtractors.ByteFrequenciesFeatures.isInteger;
 import static FeaturesExtractors.DividingStringsFeatures.getSortedKeys;
 
@@ -58,7 +59,14 @@ public class DeploymentFeatureExtraction extends FeaturesCollection {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return  (String[]) allNGrams.toArray();
+
+        String[] allNGramsArr = new String[allNGrams.size()];
+        int i=0;
+        for(String s: allNGrams) {
+            allNGramsArr[i] = s;
+            i++;
+        }
+        return allNGramsArr;
     }
 
     private void build1GramsDataFrameHeader() {
@@ -123,27 +131,30 @@ public class DeploymentFeatureExtraction extends FeaturesCollection {
                         for (AhoCorasickDoubleArrayTrie.Hit<String> hit : hits) {
                             hitsMap.putIfAbsent(hit.value, 1);
                             hitsMap.compute(hit.value, (k, v) -> (v != null) ? v + 1 : 1);
-                            String[] toPrint = new String[this.getDataFrameHeader().size()];
-                            for (int i = 0; i < allNGrams.length; i++) {
-                                if (hitsMap.containsKey(allNGrams[i]))
-                                    toPrint[i] = (hitsMap.get(allNGrams[i])).toString();
-                                else
-                                    toPrint[i] = "0";
-                            }
-                            toPrint[toPrint.length - 1] = familyName;
-                            String fileName = getSampleName(maliciousSample.getName());
-                            toPrint[toPrint.length - 2] = fileName;
-                            testNGramsMap.put(fileName, toPrint);
-                            finishWriting(testNGramsMap, writer);
-                            log.info("Finished Extracting Hits From Test File: " + fileName);
                         }
+
+                        String[] toPrint = new String[this.getDataFrameHeader().size()];
+
+                        for (int i = 0; i < allNGrams.length; i++) {
+                            if (hitsMap.containsKey(allNGrams[i]))
+                                toPrint[i] = (hitsMap.get(allNGrams[i])).toString();
+                            else
+                                toPrint[i] = "0";
+                        }
+
+                        toPrint[toPrint.length - 1] = familyName;
+                        String fileName = getSampleName(maliciousSample.getName());
+                        toPrint[toPrint.length - 2] = fileName;
+                        testNGramsMap.put(fileName, toPrint);
+                        log.info("Finished Extracting Hits From Test File: " + fileName);
                     }
                 }
-            }
-            log.info("Finished Calculating N-Grams of Test Set");
-        } catch (IOException e) {
+                            finishWriting(testNGramsMap, writer);
+                    }
+                } catch (IOException e) {
             e.printStackTrace();
         }
+        log.info("Finished Calculating N-Grams of Test Set");
     }
 
     private void finishWriting(Map<CharSequence, String[]> featuresMap, CSVWriter writer) {
@@ -177,7 +188,7 @@ public class DeploymentFeatureExtraction extends FeaturesCollection {
         int numTotal=0;
 
         try {
-            outputStringFile = new FileWriter(this.getFeatureCollectionPath() + "/allTestByteSequencesFeatures.csv");
+            outputStringFile = new FileWriter(this.getFeatureCollectionPath() + "/allTest1GramsFeatures.csv");
             CSVWriter testWriter = new CSVWriter(outputStringFile);
             ConcurrentMap<CharSequence, String> testSet = this.getToExtractFrom().getTestSet();
             String[] firstLine = this.getDataFrameHeader().toArray(new String[0]);
@@ -201,7 +212,7 @@ public class DeploymentFeatureExtraction extends FeaturesCollection {
                         int len = fileBinaryString.length();
 
                         if (len > 0) {
-                            getToExtractFrom().getEntropyCalculator().buildFrequencies(fileBinaryString, len, freq);
+                            buildFrequencies(fileBinaryString, len, freq);
                             for (int i = 0; i < freq.length; i++) {
                                 String res = String.valueOf(freq[i]);
                                 realStrings[i] = res;

@@ -1,6 +1,7 @@
 package FeaturesExtractors;
 
 import Data.Dataset;
+import Entropy.CalculateEntropy;
 import com.opencsv.CSVWriter;
 import com.squareup.javapoet.ClassName;
 
@@ -62,7 +63,7 @@ public class ByteFrequenciesFeatures extends FeaturesCollection {
                         int len = fileBinaryString.length();
 
                         if (len > 0) {
-                            getToExtractFrom().getEntropyCalculator().buildFrequencies(fileBinaryString, len, freq);
+                            CalculateEntropy.buildFrequencies(fileBinaryString, len, freq);
                             for (int i = 0; i < freq.length; i++) {
                                 String res = String.valueOf(freq[i]);
                                 realStrings[i] = res;

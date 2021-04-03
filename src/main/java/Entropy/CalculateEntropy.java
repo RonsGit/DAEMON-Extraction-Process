@@ -54,7 +54,7 @@ public class CalculateEntropy {
         }
     }
 
-    public void buildFrequencies(String fileBinaryString, int len, int[] freq) {
+    public static void buildFrequencies(String fileBinaryString, int len, int[] freq) {
         for (int i = 0; i + 2 <= len; i += 2) {
             String current_str = fileBinaryString.substring(i, i + 2);
             if(isInteger(current_str, 16))

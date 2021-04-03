@@ -22,7 +22,7 @@ public class Dataset {
     // Important Public Fields
     public static String TRAIN_FOLDER = "/trainMap";
     public static String TEST_FOLDER = "/testMap";
-    public static int SET_APPROX_SIZE =5000;
+    public static int SET_APPROX_SIZE =11000;
 
     //Private Fields
     private String dataSetPath, extractionPath;
@@ -201,13 +201,15 @@ public class Dataset {
         //Static Fields
         String STRINGS_FOLDER = "/allTrainStringsInEntropy";
         createAllDirsOfPath(extractionPath + STRINGS_FOLDER);
-        for (String family : new HashSet<>(trainMap.values())) {
+        // TODO: remove comment after testing test features extraction
+        /*for (String family : new HashSet<>(trainMap.values())) {
             String extension = extractionPath + STRINGS_FOLDER + "/" + family;
             createAllDirsOfPath(extension);
             int GUESS_SIZE = 20_000_000;
             integerMap mapReader = new integerMap(extension + "/" + family + ".txt", GUESS_SIZE);
             familiesStrings.putIfAbsent(family, mapReader);
         }
+        */
 
         createAllDirsOfPath(extractionPath+ TRAIN_FOLDER);
         basicMap trainMapReader = new basicMap(extractionPath+ TRAIN_FOLDER + "/train.txt", SET_APPROX_SIZE);
